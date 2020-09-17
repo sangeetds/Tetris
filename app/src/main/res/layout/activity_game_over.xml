@@ -27,7 +27,7 @@
             android:layout_marginTop="140dp"
             android:fontFamily="@font/lunchtime_doubly_so_regular"
             android:padding="15dp"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
