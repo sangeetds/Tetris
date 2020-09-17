@@ -8,7 +8,7 @@
     </style>
 
     <style name="GameTitle" parent="Theme.AppCompat.Light">
-        <item name="android:layout_height">104dp</item>
+        <item name="android:layout_marginTop">140dp</item>
         <item name="layout_goneMarginTop">132dp</item>
         <item name="fontFamily">@font/sudbury_basin_3d</item>
         <item name="android:textAlignment">center</item>
@@ -16,4 +16,9 @@
         <item name="android:textSize">75dp</item>
     </style>
 
+    <style name="Content">
+        <item name="fontFamily">@font/lunchtime_doubly_so_regular</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
 </resources>
