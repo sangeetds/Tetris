@@ -24,13 +24,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         scoreButton.setOnClickListener {
-            val mainGame = Intent(this, GameScreen::class.java)
-            startActivity(mainGame)
+            val scoreScreen = Intent(this, Scores::class.java)
+            startActivity(scoreScreen)
         }
 
         startGameButton.setOnClickListener {
-            val mainGame = Intent(this, GameScreen::class.java)
-            startActivity(mainGame)
+            val settingScreen = Intent(this, SettingsActivity::class.java)
+            startActivity(settingScreen)
         }
     }
 
