@@ -25,4 +25,8 @@
     <string name="music">Music</string>
     <string name="sets">Settings</string>
     <string name="game_over">Game Over</string>
+    <string name="share_score">Share Score</string>
+    <string name="points">You scored 456 points</string>
+    <string name="game_details">ABOUT</string>
+    <string name="flip">Flip</string>
 </resources>

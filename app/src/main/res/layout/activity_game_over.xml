@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lunchtime_doubly_so_regular"
             android:padding="15dp"
-            android:text="Share Score"
+            android:text="@string/share_score"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,10 +55,14 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:fontFamily="@font/sudbury_basin_3d"
+            android:text="@string/points"
+            android:textColor="#F3F1F1"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
