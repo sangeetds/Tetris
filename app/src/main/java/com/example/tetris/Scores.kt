@@ -12,7 +12,7 @@ class Scores : AppCompatActivity() {
 
         val topPlayers= playerData.sortedByDescending { it.score }
 
-        val firstPosition = findViewById<TextView>(R.id.firstPosition)
+        val firstPosition = findViewById<TextView>(R.id.highScore)
         val secondPosition = findViewById<TextView>(R.id.secondPosition)
         val thirdPosition = findViewById<TextView>(R.id.thirdPosition)
 
