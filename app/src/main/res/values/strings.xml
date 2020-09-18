@@ -26,12 +26,21 @@
     <string name="sets">Settings</string>
     <string name="game_over">Game Over</string>
     <string name="share_score">Share Score</string>
-    <string name="points">You scored 456 points</string>
+    <string name="points">You scored </string>
     <string name="game_details">ABOUT</string>
     <string name="flip">Flip</string>
     <string name="retry">Retry</string>
     <string name="scores">High Scores</string>
-    <string name="player_1">Player 1</string>
-    <string name="player_2">Player 2</string>
-    <string name="player_4">Player 4</string>
+    <string name="player_one">Player 1</string>
+    <string name="player_two">Player 2</string>
+    <string name="player_three">Player 4</string>
+    <string name="position_one">1.</string>
+    <string name="position_two">2.</string>
+    <string name="position_three">3.</string>
+    <string name="score_1">Score 1</string>
+    <string name="score_2">Score 2</string>
+    <string name="score_3">Score 3</string>
+    <string name="total_points">456 </string>
+    <string name="p">Points</string>
+    <string name="new_top_score">! New High Score !</string>
 </resources>

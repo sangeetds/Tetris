@@ -1,6 +1,7 @@
 package com.example.tetris
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 
@@ -14,6 +15,12 @@ class SettingsActivity : AppCompatActivity() {
             .replace(R.id.settings, SettingsFragment())
             .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val musicSwitch = findViewById<Button>(R.id.musicButton)
+
+//        musicSwitch.setOnClickListener {
+//
+//        }
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

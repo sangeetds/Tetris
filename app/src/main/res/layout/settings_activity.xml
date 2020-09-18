@@ -12,7 +12,7 @@
         android:background="@drawable/background_gradient">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/settingText"
             style="@style/GameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:padding="15dp"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
-            android:id="@+id/button"
+            android:id="@+id/musicButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="152dp"
@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/settingText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

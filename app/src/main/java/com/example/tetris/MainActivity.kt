@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "score", Toast.LENGTH_SHORT).show()
         }
 
-        startGameButton.setOnClickListener {
+        settingsButton.setOnClickListener {
             val settingScreen = Intent(this, SettingsActivity::class.java)
             startActivity(settingScreen)
             Log.i(R.id.main.toString(), "C")
