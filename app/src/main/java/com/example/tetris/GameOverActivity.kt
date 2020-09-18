@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 //import android.view.View
 import android.widget.Button
+import kotlinx.android.synthetic.main.activity_game_over.*
+
 //import android.widget.TextView
 
 class GameOverActivity : AppCompatActivity() {
@@ -16,12 +18,8 @@ class GameOverActivity : AppCompatActivity() {
 //        val score = intent.getStringExtra(Intent.EXTRA_TEXT)
 //
 //        if (score!!.toInt() > topPlayer.score) {
-//            val scoreView = findViewById<TextView>(R.id.new_high_score)
-//            scoreView.visibility = View.GONE
+//            newHighScore.visibility = View.GONE
 //        }
-
-        val retryButton = findViewById<Button>(R.id.retry_button)
-        val shareScoreButton = findViewById<Button>(R.id.share_button)
 
         retryButton.setOnClickListener {
             val scoreScreen = Intent(this, Scores::class.java)
@@ -29,7 +27,7 @@ class GameOverActivity : AppCompatActivity() {
             finish()
         }
 
-        shareScoreButton.setOnClickListener {
+        shareButton.setOnClickListener {
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }

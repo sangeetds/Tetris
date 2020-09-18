@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
     tools:context=".Scores">
 
     <TextView
-        android:id="@+id/highScore"
+        android:id="@+id/highScoreButton"
         style="@style/GameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/player_three"
-        app:layout_constraintBottom_toTopOf="@+id/thirdPosition"
+        app:layout_constraintBaseline_toBaselineOf="@+id/position_two"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent" />
@@ -53,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/secondPosition"
-        app:layout_constraintTop_toBottomOf="@+id/highScore"
+        app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
         app:layout_constraintVertical_bias="0.439" />
 
     <TextView
@@ -80,8 +81,8 @@
         app:layout_constraintEnd_toStartOf="@+id/first_position"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highScore"
-        app:layout_constraintVertical_bias="0.992" />
+        app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/top_score"
@@ -93,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/first_position"
-        app:layout_constraintTop_toBottomOf="@+id/highScore" />
+        app:layout_constraintTop_toBottomOf="@+id/highScoreButton" />
 
     <TextView
         android:id="@+id/position_two"
@@ -105,7 +106,7 @@
         app:layout_constraintEnd_toStartOf="@+id/secondPosition"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highScore"
+        app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
         app:layout_constraintVertical_bias="0.439" />
 
     <TextView
@@ -114,21 +115,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/player_two"
-        app:layout_constraintBottom_toTopOf="@+id/secondPosition"
+        app:layout_constraintBaseline_toBaselineOf="@+id/positon_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highScore"
-        app:layout_constraintVertical_bias="0.978" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/thirdPosition"
         style="@style/Content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
         android:text="@string/player_one"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/position_three"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent" />

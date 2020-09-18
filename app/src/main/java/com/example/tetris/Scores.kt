@@ -1,7 +1,10 @@
 package com.example.tetris
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 
 class Scores : AppCompatActivity() {
@@ -27,6 +30,19 @@ class Scores : AppCompatActivity() {
         topScore.text = if (topPlayers.isEmpty()) "" else topPlayers[0].score.toString()
         secondTopScore.text = if (topPlayers.size < 2) "" else topPlayers[1].score.toString()
         thirdTopScore.text = if (topPlayers.size < 3) "" else topPlayers[2].score.toString()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.game_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val aboutIntent = Intent(this, About::class.java)
+        startActivity(aboutIntent)
+
+        return true
     }
 
 }

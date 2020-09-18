@@ -28,7 +28,7 @@
     <string name="share_score">Share Score</string>
     <string name="points">You scored </string>
     <string name="game_details">ABOUT</string>
-    <string name="flip">Flip</string>
+    <string name="flip">Rotate</string>
     <string name="retry">Retry</string>
     <string name="scores">High Scores</string>
     <string name="player_one">Player 1</string>

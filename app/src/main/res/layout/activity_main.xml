@@ -32,7 +32,7 @@
         android:text="@string/start_game"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/highScore"
+        app:layout_constraintBottom_toTopOf="@+id/highScoreButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
-        android:id="@+id/highScore"
+        android:id="@+id/highScoreButton"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -51,14 +51,14 @@
         android:text="@string/high_score"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/settings"
+        app:layout_constraintBottom_toTopOf="@+id/settingButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startButton" />
 
     <Button
-        android:id="@+id/settings"
+        android:id="@+id/settingButton"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highScore" />
+        app:layout_constraintTop_toBottomOf="@+id/highScoreButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
