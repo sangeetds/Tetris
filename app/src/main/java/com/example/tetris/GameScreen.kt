@@ -44,8 +44,6 @@ class GameScreen : AppCompatActivity() {
             override fun run() {
                 tetrisView.blocks = tetris.blocks
 
-                tetrisView.invalidate()
-
                 tetris.moveCurrentBlock(UserInput.Down)
 
                 runOnUiThread {
@@ -54,6 +52,8 @@ class GameScreen : AppCompatActivity() {
                 }
 
                 if (tetris.gameFinished) finishGame()
+
+                tetrisView.invalidate()
             }
         }
 

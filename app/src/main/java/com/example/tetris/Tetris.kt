@@ -35,14 +35,22 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
 
     fun moveCurrentBlock(direction: UserInput) {
         val newCoordinates = currentBlockCoordinates.map { (r, c) -> Pair(r + if (direction == UserInput.Down) 1 else 0, c + if (direction == UserInput.Left) -1 else if (direction == UserInput.Right) 1 else 0) }
+        val collision = newCoordinates.shareSameSpace()
 
-        if (newCoordinates.shareSameSpace()) {
+        if (collision) {
             currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = false }
             newCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
             currentBlockCoordinates = newCoordinates
         }
         else if (direction == UserInput.Down) {
-            currentBlockCoordinates = BlocksProvider.getNewBlock()
+            val anotherBlock = BlocksProvider.getNewBlock()
+
+            if (!anotherBlock.shareSameSpace()) {
+                gameFinished = true
+                return
+            }
+
+            currentBlockCoordinates = anotherBlock
             currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
         }
 
