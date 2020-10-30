@@ -1,6 +1,5 @@
 package com.example.tetris
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,11 +26,11 @@ class GameScreen : AppCompatActivity() {
             startGame()
 
             leftButton.setOnClickListener {
-                tetris.update(UserInput.Left)
+                tetris.moveCurrentBlock(UserInput.Left)
             }
 
             rightButton.setOnClickListener {
-                tetris.update(UserInput.Right)
+                tetris.moveCurrentBlock(UserInput.Right)
             }
         }
 
@@ -43,15 +42,16 @@ class GameScreen : AppCompatActivity() {
     private fun startGame() {
         val runAsyncTask = object : TimerTask() {
             override fun run() {
-                tetris.update(UserInput.Down)
                 tetrisView.blocks = tetris.blocks
+
+                tetrisView.invalidate()
+
+                tetris.moveCurrentBlock(UserInput.Down)
 
                 runOnUiThread {
                     val points: TextView = findViewById(R.id.currentPoints)
                     points.text = tetris.points.toString()
                 }
-
-                tetrisView.invalidate()
 
                 if (tetris.gameFinished) finishGame()
             }

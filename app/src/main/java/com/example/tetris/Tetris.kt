@@ -33,7 +33,7 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
         currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
     }
 
-    fun update(direction: UserInput) {
+    fun moveCurrentBlock(direction: UserInput) {
         val newCoordinates = currentBlockCoordinates.map { (r, c) -> Pair(r + if (direction == UserInput.Down) 1 else 0, c + if (direction == UserInput.Left) -1 else if (direction == UserInput.Right) 1 else 0) }
 
         if (newCoordinates.shareSameSpace()) {
@@ -45,16 +45,16 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
             currentBlockCoordinates = BlocksProvider.getNewBlock()
             currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
         }
+
+        clearLine()
     }
 
-    private fun clearLine(
-        dxChangeValue: Float,
-        dyChangeValue: Float,
-        blocks: MutableList<Block>,
-        screenWidth: Int,
-        screenHeight: Int
-    ) {
-
+    private fun clearLine() {
+        blocks.forEach { row ->
+            if (row.all { block -> block.active }) {
+                row.forEach { it.active = false }
+            }
+        }
 
         points += 100
     }
@@ -64,7 +64,13 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
             return false
         }
 
-        return this.none { (r, c) -> blocks[r][c].active }
+        currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = false }
+
+        val noCollision = this.none { (r, c) -> blocks[r][c].active }
+
+        currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
+
+        return noCollision
     }
 
     private fun List<Pair<Int, Int>>.inSpace() = this.all { (r, c) -> r in blocks.indices && c in blocks[r].indices }
