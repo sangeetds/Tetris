@@ -50,17 +50,25 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
     }
 
     private fun clearLine() {
-        blocks.forEach { row ->
+        blocks.forEachIndexed { rowIndex, row ->
             if (row.all { block -> block.active }) {
                 row.forEach { it.active = false }
+                points += 100
+
+                for (tempRow in rowIndex - 1 downTo 0) {
+                    blocks[tempRow].forEachIndexed { blockIndex, block ->
+                        if (block.active) {
+                            block.active = false
+                            blocks[tempRow + 1][blockIndex].active = true
+                        }
+                    }
+                }
             }
         }
-
-        points += 100
     }
 
     private fun List<Pair<Int, Int>>.shareSameSpace(): Boolean {
-        if (!this.inSpace()) {
+        if (!this.all { it.inSpace() }) {
             return false
         }
 
@@ -73,7 +81,7 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
         return noCollision
     }
 
-    private fun List<Pair<Int, Int>>.inSpace() = this.all { (r, c) -> r in blocks.indices && c in blocks[r].indices }
+    private fun Pair<Int, Int>.inSpace() = this.first in blocks.indices && this.second in blocks[this.first].indices
 }
 
 
