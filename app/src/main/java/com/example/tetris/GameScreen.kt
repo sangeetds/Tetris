@@ -27,11 +27,11 @@ class GameScreen : AppCompatActivity() {
             startGame()
 
             leftButton.setOnClickListener {
-                tetris.sendInput(UserInput.Left)
+                tetris.update(UserInput.Left)
             }
 
             rightButton.setOnClickListener {
-                tetris.sendInput(UserInput.Right)
+                tetris.update(UserInput.Right)
             }
         }
 
@@ -43,7 +43,7 @@ class GameScreen : AppCompatActivity() {
     private fun startGame() {
         val runAsyncTask = object : TimerTask() {
             override fun run() {
-                tetris.update()
+                tetris.update(UserInput.Down)
                 tetrisView.blocks = tetris.blocks
 
                 runOnUiThread {

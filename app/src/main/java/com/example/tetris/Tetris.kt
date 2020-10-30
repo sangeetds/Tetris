@@ -10,6 +10,7 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
     private val dyChangeValue = (screenHeight / 20f).roundToInt().toFloat()
     private val dxChangeValue = (screenWidth / 20f).roundToInt().toFloat()
     val blocks: List<List<Block>>
+    private var currentBlockCoordinates: List<Pair<Int, Int>>
 
     init {
         var dy = -dyChangeValue
@@ -24,13 +25,26 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
             List(20) {
                 dx += dxChangeValue
                 col++
-                Block(row = row , col = col, RectF(dx, dy, dx + dxChangeValue, dy + dyChangeValue), active = false)
+                Block(row = row , col = col, rect = RectF(dx, dy, dx + dxChangeValue, dy + dyChangeValue), active = false)
             }
         }
+
+        currentBlockCoordinates = BlocksProvider.getNewBlock()
+        currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
     }
 
-    fun update() {
+    fun update(direction: UserInput) {
+        val newCoordinates = currentBlockCoordinates.map { (r, c) -> Pair(r + if (direction == UserInput.Down) 1 else 0, c + if (direction == UserInput.Left) -1 else if (direction == UserInput.Right) 1 else 0) }
 
+        if (newCoordinates.shareSameSpace()) {
+            currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = false }
+            newCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
+            currentBlockCoordinates = newCoordinates
+        }
+        else if (direction == UserInput.Down) {
+            currentBlockCoordinates = BlocksProvider.getNewBlock()
+            currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
+        }
     }
 
     private fun clearLine(
@@ -45,36 +59,15 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
         points += 100
     }
 
-    fun sendInput(input: UserInput) {
-        when (input) {
-            UserInput.Left -> {
-
-            }
-            UserInput.Right -> {
-
-            }
-        }
-    }
-
-    private fun MutableList<Block>.shareSameSpace(activeBlock: Block, down: UserInput): Boolean {
-
-        this.forEach { currBlock ->
-            if (
-                currBlock != activeBlock && !activeBlock.intersect(currBlock, down)
-            )
-                return true
+    private fun List<Pair<Int, Int>>.shareSameSpace(): Boolean {
+        if (!this.inSpace()) {
+            return false
         }
 
-        return false
+        return this.none { (r, c) -> blocks[r][c].active }
     }
 
-    private fun Block.intersect(otherBlock: Block, input: UserInput): Boolean {
-        return false
-    }
-
-    private fun Path.inSpace(): Boolean {
-        return false
-    }
+    private fun List<Pair<Int, Int>>.inSpace() = this.all { (r, c) -> r in blocks.indices && c in blocks[r].indices }
 }
 
 
