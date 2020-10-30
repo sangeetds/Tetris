@@ -1,49 +1,81 @@
 package com.example.tetris
 
-import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
-import android.view.View
-import android.widget.RelativeLayout
-import android.widget.Toast
-import kotlin.math.absoluteValue
+import android.graphics.*
+import kotlin.math.roundToInt
 
-class Tetris(context: Context, contentLayout: RelativeLayout) : View(context) {
 
-    val painter = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        strokeWidth = 10f
-        style = Paint.Style.FILL
+class Tetris(val screenWidth: Int, val screenHeight: Int) {
+    var gameFinished = false
+    var points = 0
+    private val dyChangeValue = (screenHeight / 20f).roundToInt().toFloat()
+    private val dxChangeValue = (screenWidth / 20f).roundToInt().toFloat()
+    val blocks: List<List<Block>>
+
+    init {
+        var dy = -dyChangeValue
+        var row = -1
+
+        blocks = List(20) {
+            var dx = -dxChangeValue
+            dy += dyChangeValue
+            var col = -1
+            row++
+
+            List(20) {
+                dx += dxChangeValue
+                col++
+                Block(row = row , col = col, RectF(dx, dy, dx + dxChangeValue, dy + dyChangeValue), active = false)
+            }
+        }
     }
 
-    val screenHeight = contentLayout.height
-    val screenWidth = contentLayout.width
+    fun update() {
 
-    val block = Rect(50,50,200,200)
-
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-
-        painter.color = Color.WHITE
-        canvas?.drawRect(block, painter)
     }
 
-    fun render() {
-        if ((block.bottom - screenHeight).absoluteValue > 50) {
-            block.top += 5
-            block.bottom += 5
+    private fun clearLine(
+        dxChangeValue: Float,
+        dyChangeValue: Float,
+        blocks: MutableList<Block>,
+        screenWidth: Int,
+        screenHeight: Int
+    ) {
+
+
+        points += 100
+    }
+
+    fun sendInput(input: UserInput) {
+        when (input) {
+            UserInput.Left -> {
+
+            }
+            UserInput.Right -> {
+
+            }
+        }
+    }
+
+    private fun MutableList<Block>.shareSameSpace(activeBlock: Block, down: UserInput): Boolean {
+
+        this.forEach { currBlock ->
+            if (
+                currBlock != activeBlock && !activeBlock.intersect(currBlock, down)
+            )
+                return true
         }
 
-        invalidate()
+        return false
     }
 
-    fun loop() {
-        render()
+    private fun Block.intersect(otherBlock: Block, input: UserInput): Boolean {
+        return false
     }
 
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        super.onLayout(changed, left, top, right, bottom)
+    private fun Path.inSpace(): Boolean {
+        return false
     }
 }
+
+
+

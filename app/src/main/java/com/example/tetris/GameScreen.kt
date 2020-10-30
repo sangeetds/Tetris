@@ -1,46 +1,79 @@
 package com.example.tetris
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_game_screen.*
+import android.widget.Button
+import android.widget.TextView
+import androidx.core.view.doOnLayout
 import java.util.*
 
 class GameScreen : AppCompatActivity() {
     lateinit var tetris: Tetris
-    val timer = Timer()
+    lateinit var tetrisView: TetrisView
+    private val timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
 
-        layoutMainScreenGame.post {
-            tetris = Tetris(this, layoutMainScreenGame)
+        tetrisView = findViewById(R.id.tetrisView)
+        val leftButton = findViewById<Button>(R.id.leftButton)
+        val rightButton = findViewById<Button>(R.id.rightButton)
 
-            layoutMainScreenGame.addView(tetris)
+        tetrisView.doOnLayout {
+            tetris = Tetris(screenWidth = it.width, screenHeight = it.height)
+            startGame()
 
-            layoutMainScreenGame.setOnClickListener {
-                startGame()
+            leftButton.setOnClickListener {
+                tetris.sendInput(UserInput.Left)
+            }
+
+            rightButton.setOnClickListener {
+                tetris.sendInput(UserInput.Right)
             }
         }
 
         supportActionBar?.hide()
     }
 
+
+
     private fun startGame() {
-        val runAsynchTask = object : TimerTask() {
+        val runAsyncTask = object : TimerTask() {
             override fun run() {
+                tetris.update()
+                tetrisView.blocks = tetris.blocks
+
                 runOnUiThread {
-                    tetris.loop()
+                    val points: TextView = findViewById(R.id.currentPoints)
+                    points.text = tetris.points.toString()
                 }
+
+                tetrisView.invalidate()
+
+                if (tetris.gameFinished) finishGame()
             }
         }
 
-        timer.schedule(runAsynchTask, 0, 20)
+        timer.schedule(runAsyncTask, 0, 200)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun updateScore() {
+
+    }
+
+    private fun finishGame() {
+        val gameOverScreen = Intent(this, GameOverActivity::class.java)
+        gameOverScreen.putExtra("Score", tetris.points.toString())
+        startActivity(gameOverScreen)
+
+        finish()
+    }
+
+    override fun finish() {
+        super.finish()
         timer.cancel()
     }
 }

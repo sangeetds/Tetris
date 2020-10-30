@@ -72,6 +72,20 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/top_score"
+        style="@style/Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:text="@string/score_1"
+        app:layout_constraintBottom_toTopOf="@+id/second_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/first_position"
+        app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
         android:id="@+id/positon_one"
         style="@style/Content"
         android:layout_width="wrap_content"
@@ -84,17 +98,6 @@
         app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/top_score"
-        style="@style/Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:text="@string/score_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/first_position"
-        app:layout_constraintTop_toBottomOf="@+id/highScoreButton" />
 
     <TextView
         android:id="@+id/position_two"

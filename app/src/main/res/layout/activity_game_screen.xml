@@ -10,48 +10,89 @@
     tools:context=".GameScreen">
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/rightButton"
         android:layout_width="50dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:background="@drawable/right_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button4" />
+        app:layout_constraintStart_toEndOf="@+id/rotateButton"
+        app:layout_constraintTop_toBottomOf="@+id/tetrisView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/rotateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:background="#FFF"
         android:text="@string/flip"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/rightButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button7" />
+        app:layout_constraintStart_toEndOf="@+id/leftButton"
+        app:layout_constraintTop_toBottomOf="@+id/currentPoints"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
 
-        android:id="@+id/button7"
+        android:id="@+id/leftButton"
         android:layout_width="50dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:background="@drawable/left_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/rotateButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <RelativeLayout
-        android:id="@+id/layoutMainScreenGame"
-        android:layout_width="295dp"
-        android:layout_height="550dp"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+    <com.example.tetris.TetrisView
+        android:id="@+id/tetrisView"
+        android:layout_width="292dp"
+        android:layout_height="499dp"
+        app:layout_constraintBottom_toTopOf="@+id/rotateButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/game_border">
+        app:layout_constraintVertical_bias="0.3" />
 
-    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="302dp"
+        android:layout_height="512dp"
+        android:background="@drawable/game_border"
+        app:layout_constraintBottom_toTopOf="@+id/rotateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/currentPoints"
+        style="@style/Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_points"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.641"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.844" />
+
+    <TextView
+        android:id="@+id/pointsText"
+        style="@style/Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/points_text"
+        app:layout_constraintBottom_toTopOf="@+id/rotateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.361"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tetrisView"
+        app:layout_constraintVertical_bias="0.482" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

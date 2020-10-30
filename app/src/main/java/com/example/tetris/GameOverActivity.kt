@@ -3,11 +3,10 @@ package com.example.tetris
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-//import android.view.View
-import android.widget.Button
+import android.view.View
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_game_over.*
 
-//import android.widget.TextView
 
 class GameOverActivity : AppCompatActivity() {
 
@@ -15,14 +14,17 @@ class GameOverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
 
-//        val score = intent.getStringExtra(Intent.EXTRA_TEXT)
-//
-//        if (score!!.toInt() > topPlayer.score) {
-//            newHighScore.visibility = View.GONE
-//        }
+        val score = intent.getStringExtra("Score")
+
+        if (score!!.toInt() > topPlayer.score) {
+            newHighScore.visibility = View.VISIBLE
+        }
+
+        val points = findViewById<TextView>(R.id.points)
+        points.text = score
 
         retryButton.setOnClickListener {
-            val scoreScreen = Intent(this, Scores::class.java)
+            val scoreScreen = Intent(this, GameScreen::class.java)
             startActivity(scoreScreen)
             finish()
         }
