@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.doOnLayout
 import java.util.*
 
@@ -66,7 +67,7 @@ class GameScreen : AppCompatActivity() {
     private fun finishGame() {
         val gameOverScreen = Intent(this, GameOverActivity::class.java)
         gameOverScreen.putExtra("Score", tetris.points.toString())
-        gameOverScreen.putExtra("Player Name", intent.getStringExtra("Player Name"))
+        gameOverScreen.putExtra("Player", intent.getStringExtra("Player"))
         startActivity(gameOverScreen)
 
         finish()

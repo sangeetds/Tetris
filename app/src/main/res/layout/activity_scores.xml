@@ -21,69 +21,16 @@
 
 
     <TextView
-        android:id="@+id/secondPosition"
+        android:id="@+id/position_two"
         style="@style/Content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/player_three"
-        app:layout_constraintBaseline_toBaselineOf="@+id/position_two"
+        android:text="@string/position_two"
+        app:layout_constraintBottom_toTopOf="@+id/position_three"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/position_three"
-        style="@style/Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/position_three"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/thirdPosition"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/position_two"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/second_score"
-        style="@style/Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/score_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/secondPosition"
-        app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
-        app:layout_constraintVertical_bias="0.439" />
-
-    <TextView
-        android:id="@+id/third_score"
-        style="@style/Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:text="@string/score_3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/thirdPosition"
-        app:layout_constraintTop_toBottomOf="@+id/second_score"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/top_score"
-        style="@style/Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="@string/score_1"
-        app:layout_constraintBottom_toTopOf="@+id/second_score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/first_position"
-        app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/positon_one" />
 
     <TextView
         android:id="@+id/positon_one"
@@ -92,46 +39,22 @@
         android:layout_height="wrap_content"
         android:text="@string/position_one"
         app:layout_constraintBottom_toTopOf="@+id/position_two"
-        app:layout_constraintEnd_toStartOf="@+id/first_position"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/position_two"
+        android:id="@+id/position_three"
         style="@style/Content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/position_two"
+        android:text="@string/position_three"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/secondPosition"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highScoreButton"
-        app:layout_constraintVertical_bias="0.439" />
-
-    <TextView
-        android:id="@+id/first_position"
-        style="@style/Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/player_two"
-        app:layout_constraintBaseline_toBaselineOf="@+id/positon_one"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/thirdPosition"
-        style="@style/Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/player_one"
-        app:layout_constraintBaseline_toBaselineOf="@+id/position_three"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/position_two" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

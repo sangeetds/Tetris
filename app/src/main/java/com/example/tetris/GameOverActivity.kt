@@ -18,9 +18,9 @@ class GameOverActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game_over)
 
         val score = intent.getStringExtra("Score")!!
-        val player = intent.getStringExtra("Player Name")
+        val player = intent.getStringExtra("Player")!!
 
-//        playerData.add(Player(player!!, score!!.toInt()))
+        playerData.add(Player(player, score = score.toInt()))
 
         topPlayer?.let {
             if (score.toInt() > topPlayer!!.score) {

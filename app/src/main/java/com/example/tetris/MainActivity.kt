@@ -19,13 +19,16 @@ class MainActivity : AppCompatActivity() {
         val settingButton = findViewById<Button>(R.id.settingButton)
         val playerName = findViewById<EditText>(R.id.playerName)
 
+        playerName.text.clear()
+
         startButton.setOnClickListener {
             if (playerName.text.isEmpty() || playerName.text.isBlank()) {
                 Toast.makeText(this, "Enter your name please", Toast.LENGTH_SHORT).show()
             }
             else {
                 val mainGame = Intent(this, GameScreen::class.java)
-                mainGame.putExtra("Player Name", playerName.text)
+                val text = playerName.text.toString()
+                mainGame.putExtra("Player", text)
                 startActivity(mainGame)
             }
         }

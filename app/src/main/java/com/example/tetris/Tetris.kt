@@ -1,6 +1,6 @@
 package com.example.tetris
 
-import android.graphics.*
+import android.graphics.RectF
 import kotlin.math.roundToInt
 
 
@@ -25,7 +25,14 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
             List(20) {
                 dx += dxChangeValue
                 col++
-                Block(row = row , col = col, rect = RectF(dx, dy, dx + dxChangeValue, dy + dyChangeValue), active = false)
+                Block(
+                    row = row, col = col, rect = RectF(
+                        dx,
+                        dy,
+                        dx + dxChangeValue,
+                        dy + dyChangeValue
+                    ), active = false
+                )
             }
         }
 
@@ -34,7 +41,10 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
     }
 
     fun moveCurrentBlock(direction: UserInput) {
-        val newCoordinates = currentBlockCoordinates.map { (r, c) -> Pair(r + if (direction == UserInput.Down) 1 else 0, c + if (direction == UserInput.Left) -1 else if (direction == UserInput.Right) 1 else 0) }
+        val newCoordinates = currentBlockCoordinates.map { (r, c) -> Pair(
+            r + if (direction == UserInput.Down) 1 else 0,
+            c + if (direction == UserInput.Left) -1 else if (direction == UserInput.Right) 1 else 0
+        ) }
         val collision = newCoordinates.shareSameSpace()
 
         if (collision) {
@@ -92,7 +102,36 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
     private fun Pair<Int, Int>.inSpace() = this.first in blocks.indices && this.second in blocks[this.first].indices
 
     fun rotateCurrentBlock() {
-        
+        var rotateMatrix = List(4) { IntArray(4) { 0 } }
+        val newCoordinates = mutableListOf<Pair<Int, Int>>()
+        val x = currentBlockCoordinates.minByOrNull { it.first }!!.first
+        val y = currentBlockCoordinates.minByOrNull { it.second }!!.second
+
+        println("$x $y")
+        currentBlockCoordinates.forEach { (r, c) ->
+            println("$r $c")
+            rotateMatrix[r - x][c - y] = 1 }
+
+        rotateMatrix = rotateMatrix.reversed()
+        rotateMatrix.forEachIndexed { i, row ->
+            for (j in i + 1 until row.size) {
+                rotateMatrix[i][j] = rotateMatrix[j][i].also { rotateMatrix[j][i] = rotateMatrix[i][j] }
+            }
+        }
+
+        rotateMatrix.forEachIndexed { i, it ->
+            it.forEachIndexed { index, ints ->
+                if (ints == 1) {
+                    newCoordinates.add(Pair(i + x, index + y - 1))
+                }
+            }
+        }
+
+        if (newCoordinates.shareSameSpace()) {
+            currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = false }
+            newCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
+            currentBlockCoordinates = newCoordinates
+        }
     }
 }
 

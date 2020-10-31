@@ -1,7 +1,7 @@
 package com.example.tetris
 
 object BlockProvider {
-    val playerData = mutableListOf<Player>(Player("null", 9))
+    val playerData = mutableListOf<Player>()
     val topPlayer: Player? get() = playerData.maxByOrNull { it.score }
 
     fun getNewBlock() =
@@ -16,7 +16,7 @@ object BlockProvider {
                 listOf(Pair(0, 9), Pair(0, 10), Pair(1, 10), Pair(2, 10))
             }
             3 -> {
-                listOf(Pair(1, 9), Pair(0, 10), Pair(1, 10), Pair(1, 11))
+                listOf(Pair(0, 10), Pair(1, 9), Pair(1, 10), Pair(1, 11))
             }
             4 -> {
                 listOf(Pair(0, 10), Pair(1, 10), Pair(1, 9), Pair(2, 9))
