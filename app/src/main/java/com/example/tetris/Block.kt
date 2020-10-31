@@ -1,6 +1,5 @@
 package com.example.tetris
 
-import android.graphics.Path
 import android.graphics.RectF
 
 data class Block(

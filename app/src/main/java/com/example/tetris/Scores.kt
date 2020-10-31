@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class Scores : AppCompatActivity() {
 
@@ -13,7 +14,7 @@ class Scores : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scores)
 
-        val topPlayers = playerData.sortedByDescending { it.score }
+        val topPlayers = BlockProvider.playerData.sortedByDescending { it.score }
 
         val firstPosition = findViewById<TextView>(R.id.first_position)
         val secondPosition = findViewById<TextView>(R.id.secondPosition)

@@ -29,7 +29,7 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
             }
         }
 
-        currentBlockCoordinates = BlocksProvider.getNewBlock()
+        currentBlockCoordinates = BlockProvider.getNewBlock()
         currentBlockCoordinates.forEach { (r, c) -> blocks[r][c].active = true }
     }
 
@@ -43,7 +43,7 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
             currentBlockCoordinates = newCoordinates
         }
         else if (direction == UserInput.Down) {
-            val anotherBlock = BlocksProvider.getNewBlock()
+            val anotherBlock = BlockProvider.getNewBlock()
 
             if (!anotherBlock.shareSameSpace()) {
                 gameFinished = true
@@ -90,6 +90,10 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
     }
 
     private fun Pair<Int, Int>.inSpace() = this.first in blocks.indices && this.second in blocks[this.first].indices
+
+    fun rotateCurrentBlock() {
+        
+    }
 }
 
 

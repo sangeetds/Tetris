@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import com.example.tetris.BlockProvider.playerData
+import com.example.tetris.BlockProvider.topPlayer
 import kotlinx.android.synthetic.main.activity_game_over.*
+import kotlinx.android.synthetic.main.activity_scores.*
 
 
 class GameOverActivity : AppCompatActivity() {
@@ -14,10 +17,15 @@ class GameOverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
 
-        val score = intent.getStringExtra("Score")
+        val score = intent.getStringExtra("Score")!!
+        val player = intent.getStringExtra("Player Name")
 
-        if (score!!.toInt() > topPlayer.score) {
-            newHighScore.visibility = View.VISIBLE
+//        playerData.add(Player(player!!, score!!.toInt()))
+
+        topPlayer?.let {
+            if (score.toInt() > topPlayer!!.score) {
+                newHighScore.visibility = View.VISIBLE
+            }
         }
 
         val points = findViewById<TextView>(R.id.points)

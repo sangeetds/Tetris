@@ -4,5 +4,4 @@ enum class UserInput {
     Left,
     Right,
     Down,
-    Up
 }

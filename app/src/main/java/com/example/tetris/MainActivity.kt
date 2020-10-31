@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,12 +17,17 @@ class MainActivity : AppCompatActivity() {
         val startButton = findViewById<Button>(R.id.startButton)
         val highScoreButton = findViewById<Button>(R.id.highScoreButton)
         val settingButton = findViewById<Button>(R.id.settingButton)
+        val playerName = findViewById<EditText>(R.id.playerName)
 
         startButton.setOnClickListener {
-            val mainGame = Intent(this, GameScreen::class.java)
-            startActivity(mainGame)
-
-//            TODO("Pass Name As Well")
+            if (playerName.text.isEmpty() || playerName.text.isBlank()) {
+                Toast.makeText(this, "Enter your name please", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val mainGame = Intent(this, GameScreen::class.java)
+                mainGame.putExtra("Player Name", playerName.text)
+                startActivity(mainGame)
+            }
         }
 
         highScoreButton.setOnClickListener {

@@ -62,10 +62,10 @@
         android:text="@string/points"
         app:layout_constraintBottom_toTopOf="@+id/retryButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textGameOver"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintVertical_bias="0.659" />
 
     <TextView
         android:id="@+id/points"

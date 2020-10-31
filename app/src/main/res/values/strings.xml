@@ -45,4 +45,7 @@
     <string name="new_top_score">! New High Score !</string>
     <string name="points_text">Points:</string>
     <string name="current_points">0</string>
+    <string name="enter_your_name">Enter Your Name:</string>
+    <string name="name">Name</string>
+    <string name="player_name">Player Name</string>
 </resources>

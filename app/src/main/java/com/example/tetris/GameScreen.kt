@@ -20,6 +20,7 @@ class GameScreen : AppCompatActivity() {
         tetrisView = findViewById(R.id.tetrisView)
         val leftButton = findViewById<Button>(R.id.leftButton)
         val rightButton = findViewById<Button>(R.id.rightButton)
+        val rotateButton = findViewById<Button>(R.id.rotateButton)
 
         tetrisView.doOnLayout {
             tetris = Tetris(screenWidth = it.width, screenHeight = it.height)
@@ -32,12 +33,14 @@ class GameScreen : AppCompatActivity() {
             rightButton.setOnClickListener {
                 tetris.moveCurrentBlock(UserInput.Right)
             }
+
+            rotateButton.setOnClickListener {
+                tetris.rotateCurrentBlock()
+            }
         }
 
         supportActionBar?.hide()
     }
-
-
 
     private fun startGame() {
         val runAsyncTask = object : TimerTask() {
@@ -60,13 +63,10 @@ class GameScreen : AppCompatActivity() {
         timer.schedule(runAsyncTask, 0, 200)
     }
 
-    private fun updateScore() {
-
-    }
-
     private fun finishGame() {
         val gameOverScreen = Intent(this, GameOverActivity::class.java)
         gameOverScreen.putExtra("Score", tetris.points.toString())
+        gameOverScreen.putExtra("Player Name", intent.getStringExtra("Player Name"))
         startActivity(gameOverScreen)
 
         finish()
