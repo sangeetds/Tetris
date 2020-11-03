@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         val settingButton = findViewById<Button>(R.id.settingButton)
         val playerName = findViewById<EditText>(R.id.playerName)
 
-        playerName.text.clear()
 
         startButton.setOnClickListener {
             if (playerName.text.isEmpty() || playerName.text.isBlank()) {
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 val text = playerName.text.toString()
                 mainGame.putExtra("Player", text)
                 startActivity(mainGame)
+                playerName.text.clear()
             }
         }
 

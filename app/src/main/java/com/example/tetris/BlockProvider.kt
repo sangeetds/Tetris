@@ -1,8 +1,6 @@
 package com.example.tetris
 
 object BlockProvider {
-    val playerData = mutableListOf<Player>()
-    val topPlayer: Player? get() = playerData.maxByOrNull { it.score }
 
     fun getNewBlock() =
         when ((0..6).random()) {

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 
 class SettingsActivity : AppCompatActivity() {
@@ -12,12 +14,11 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
 
-//        Todo("Get Music")
-//        val musicSwitch = findViewById<Button>(R.id.musicButton)
-//
-//        musicSwitch.setOnClickListener {
-//
-//        }
+        val musicSwitch = findViewById<ToggleButton>(R.id.musicButton)
+
+        musicSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

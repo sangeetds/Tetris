@@ -6,17 +6,23 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
 
 class Scores : AppCompatActivity() {
+
+//    private lateinit var playerDao: PlayerDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scores)
+//        playerDao = PlayerDataBase.getDatabase(applicationContext)!!.playerDao()
 
-        val topPlayers = BlockProvider.playerData.sortedByDescending { it.score }
+//        GlobalScope.launch {
+        val playerDao = PlayerDataBase.getDatabase(applicationContext)!!.playerDao()
+//        }
 
-        val firstPosition = findViewById<TextView>(R.id.positon_one)
+        val topPlayers = playerDao.getAllPlayer()
+
+        val firstPosition = findViewById<TextView>(R.id.position_one)
         val secondPosition = findViewById<TextView>(R.id.position_two)
         val thirdPosition = findViewById<TextView>(R.id.position_three)
 
@@ -37,5 +43,4 @@ class Scores : AppCompatActivity() {
 
         return true
     }
-
 }

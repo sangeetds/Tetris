@@ -5,27 +5,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import com.example.tetris.BlockProvider.playerData
-import com.example.tetris.BlockProvider.topPlayer
+import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_game_over.*
-import kotlinx.android.synthetic.main.activity_scores.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class GameOverActivity : AppCompatActivity() {
 
+    private lateinit var playerDao: PlayerDao
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
+        playerDao = PlayerDataBase.getDatabase(this)!!.playerDao()
 
         val score = intent.getStringExtra("Score")!!
         val player = intent.getStringExtra("Player")!!
+        val topPlayer = playerDao.getAllPlayer().firstOrNull()
 
-        playerData.add(Player(player, score = score.toInt()))
+        insert(Player(name = player, score = score.toInt()))
 
-        topPlayer?.let {
-            if (score.toInt() > topPlayer!!.score) {
-                newHighScore.visibility = View.VISIBLE
-            }
+        if (topPlayer != null && score.toInt() > topPlayer.score) {
+            newHighScore.visibility = View.VISIBLE
         }
 
         val points = findViewById<TextView>(R.id.points)
@@ -48,5 +51,9 @@ class GameOverActivity : AppCompatActivity() {
         action = Intent.ACTION_SEND
         putExtra(Intent.EXTRA_TEXT, "Top Score!")
         type = "text/plain"
+    }
+
+    private fun insert(player: Player) = GlobalScope.launch {
+        playerDao.insert(player)
     }
 }

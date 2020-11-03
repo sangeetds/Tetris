@@ -3,6 +3,7 @@ package com.example.tetris
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +30,7 @@ class GameScreen : AppCompatActivity() {
 
             leftButton.setOnClickListener {
                 tetris.moveCurrentBlock(UserInput.Left)
+                leftButton.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
 
             rightButton.setOnClickListener {
@@ -56,8 +58,7 @@ class GameScreen : AppCompatActivity() {
                 }
 
                 if (tetris.gameFinished) finishGame()
-
-                tetrisView.invalidate()
+                else tetrisView.invalidate()
             }
         }
 
@@ -76,5 +77,9 @@ class GameScreen : AppCompatActivity() {
     override fun finish() {
         super.finish()
         timer.cancel()
+    }
+
+    override fun onBackPressed() {
+
     }
 }
