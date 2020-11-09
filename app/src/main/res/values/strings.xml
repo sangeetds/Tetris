@@ -48,4 +48,8 @@
     <string name="enter_your_name">Enter Your Name:</string>
     <string name="name">Name</string>
     <string name="player_name">Player Name</string>
+    <string name="game_paused">Game Paused</string>
+    <string name="resume">Resume</string>
+    <string name="quit">Quit</string>
+    <string name="restart">Restart</string>
 </resources>

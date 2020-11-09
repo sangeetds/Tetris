@@ -6,18 +6,19 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.doOnLayout
 import java.util.*
 
 class GameScreen : AppCompatActivity() {
     lateinit var tetris: Tetris
     lateinit var tetrisView: TetrisView
-    private val timer = Timer()
+    private var timer = Timer()
+    private lateinit var instance: GameScreen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
+        instance = this
 
         tetrisView = findViewById(R.id.tetrisView)
         val leftButton = findViewById<Button>(R.id.leftButton)
@@ -45,7 +46,7 @@ class GameScreen : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun startGame() {
+    fun startGame() {
         val runAsyncTask = object : TimerTask() {
             override fun run() {
                 tetrisView.blocks = tetris.blocks
@@ -80,6 +81,9 @@ class GameScreen : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
+        timer.cancel()
+        timer = Timer()
+        val quitDialog = GameDialogMessage(this, instance)
+        quitDialog.show()
     }
 }
