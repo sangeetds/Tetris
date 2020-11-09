@@ -17,7 +17,7 @@ class Scores : AppCompatActivity() {
 //        playerDao = PlayerDataBase.getDatabase(applicationContext)!!.playerDao()
 
 //        GlobalScope.launch {
-        val playerDao = PlayerDataBase.getDatabase(applicationContext)!!.playerDao()
+        val playerDao = PlayerDatabase.getDatabase(applicationContext)!!.playerDao()
 //        }
 
         val topPlayers = playerDao.getAllPlayer()

@@ -12,6 +12,6 @@ interface PlayerDao {
     @Query("SELECT * FROM player_name ORDER BY score DESC")
     fun getAllPlayer(): List<Player>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(player: Player)
 }

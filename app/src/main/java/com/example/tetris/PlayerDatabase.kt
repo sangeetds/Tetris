@@ -6,22 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Player::class], version = 1, exportSchema = false)
-
-abstract class PlayerDataBase : RoomDatabase() {
+abstract class PlayerDatabase : RoomDatabase() {
 
     abstract fun playerDao() : PlayerDao
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
-        @Volatile private var instance: PlayerDataBase? = null
+        @Volatile private var instance: PlayerDatabase? = null
 
         @Synchronized
-        fun getDatabase(context: Context): PlayerDataBase? {
+        fun getDatabase(context: Context): PlayerDatabase? {
             if (instance == null) {
                 instance = Room.databaseBuilder(
                     context.applicationContext,
-                    PlayerDataBase::class.java, "player_name"
+                    PlayerDatabase::class.java, "player_name"
                 )
                     .allowMainThreadQueries()
                     .build()

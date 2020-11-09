@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_game_over.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -13,19 +12,17 @@ import kotlinx.coroutines.launch
 
 class GameOverActivity : AppCompatActivity() {
 
-    private lateinit var playerDao: PlayerDao
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
-        playerDao = PlayerDataBase.getDatabase(this)!!.playerDao()
+        val playerRepo = PlayerRepository(PlayerDatabase.getDatabase(this)!!.playerDao())
+        val players = playerRepo.allPlayers
 
         val score = intent.getStringExtra("Score")!!
-        val player = intent.getStringExtra("Player")!!
-        val topPlayer = playerDao.getAllPlayer().firstOrNull()
+        val playerName = intent.getStringExtra("Player")!!
+        val topPlayer = players.firstOrNull()
 
-        insert(Player(name = player, score = score.toInt()))
+        insert(Player(name = playerName, score = score.toInt()), playerRepo)
 
         if (topPlayer != null && score.toInt() > topPlayer.score) {
             newHighScore.visibility = View.VISIBLE
@@ -53,7 +50,7 @@ class GameOverActivity : AppCompatActivity() {
         type = "text/plain"
     }
 
-    private fun insert(player: Player) = GlobalScope.launch {
-        playerDao.insert(player)
+    private fun insert(player: Player, playersRepo: PlayerRepository) = GlobalScope.launch {
+        playersRepo.insert(player)
     }
 }
