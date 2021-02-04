@@ -20,7 +20,6 @@ abstract class PlayerDatabase : RoomDatabase() {
                     context.applicationContext,
                     PlayerDatabase::class.java, "player_name"
                 )
-                    .allowMainThreadQueries()
                     .build()
             }
 

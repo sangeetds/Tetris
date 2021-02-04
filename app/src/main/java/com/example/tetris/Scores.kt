@@ -18,9 +18,10 @@ class Scores : AppCompatActivity() {
 
 //        GlobalScope.launch {
         val playerDao = PlayerDatabase.getDatabase(applicationContext)!!.playerDao()
+        val playerRepository = PlayerRepository(playerDao = playerDao)
 //        }
 
-        val topPlayers = playerDao.getAllPlayer()
+        val topPlayers = playerRepository.allPlayers
 
         val firstPosition = findViewById<TextView>(R.id.position_one)
         val secondPosition = findViewById<TextView>(R.id.position_two)

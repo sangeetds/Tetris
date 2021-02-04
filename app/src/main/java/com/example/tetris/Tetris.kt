@@ -107,9 +107,7 @@ class Tetris(val screenWidth: Int, val screenHeight: Int) {
         val x = currentBlockCoordinates.minByOrNull { it.first }!!.first
         val y = currentBlockCoordinates.minByOrNull { it.second }!!.second
 
-        println("$x $y")
         currentBlockCoordinates.forEach { (r, c) ->
-            println("$r $c")
             rotateMatrix[r - x][c - y] = 1 }
 
         rotateMatrix = rotateMatrix.reversed()
